@@ -1,0 +1,20 @@
+col_date = {name: "col_date", type: :date, nullable: true}
+col_timestamp = {name: "col_timestamp", type: :timestamp, nullable: false}
+
+redshift.test1 == mysql.test1
+
+redshift.test1 == redshift.test2
+
+redshift.test1 == mysql.test1 - ["col_date", "col_timestamp"]
+
+redshift.test1 == mysql.test1 - [col_date, col_timestamp]
+
+redshift.test1 + [col_date, col_timestamp] == mysql.test1
+
+redshift.test1 + redshift.test2 == mysql.test1
+
+(redshift.test1 + redshift.test2).sort == mysql.test1.sort
+
+(redshift.test1 + redshift.test2).override({column: "all", nullable: false}) == mysql.test1.override({column: "all", nullable: false})
+
+(redshift.test1 + redshift.test2).override({column: "col_timestamp", nullable: false}) == mysql.test1.override({column: "col_timestamp", nullable: false})
