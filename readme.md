@@ -1,11 +1,11 @@
 ## 環境
 
-* JDK1.7/JRE7
-* JRuby 1.7
+1. JDK1.7/JRE7
+2. JRuby 1.7
 
   インストールは[JRuby](http://jruby.org/getting-started)を参照
 
-* Gem
+3. Gem
   * jdbc-postgres
 
 ```
