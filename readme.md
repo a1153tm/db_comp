@@ -17,16 +17,32 @@ gem install jdbc-postgres
 gem install jdbc-mysql
 ```
 
+## インストール
+
+```
+git clone https://github.com/a1153tm/db_comp.git
+```
+
 ## Configuration
 
 DB接続情報を設定するだけです。JDBC URL,USER,PWDをdb_comp.rbに記述します。
+
+```ruby:db_comp.conf
+redshift.url = "jdbc:postgresql://localhost/test"
+redshift.user = "test"
+redshift.password = "test"
+
+mysql.url = "jdbc:mysql://localhost/test"
+mysql.user = "test"
+mysql.password = "test"
+```
 
 ## Checkfile
 
 チェック事項はCheckfileに記述します。Checkfileに記述する構文は、db_compのDSLに従います。
 以下を参考に記述してください。
 
-```ruby
+```ruby:Checkfile
 col_date = {name: "col_date", type: :date, nullable: true}
 col_timestamp = {name: "col_timestamp", type: :timestamp, nullable: false}
 
