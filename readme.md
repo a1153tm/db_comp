@@ -2,13 +2,22 @@
 
 * JDK1.7/JRE7
 * JRuby 1.7
-  インストールは を参照
+
+  インストールは[Juby](http://jruby.org/getting-started)を参照
+
 * Gem
+
 1. jdbc-postgres
-```gem install jdbc-postgres```
+
+```
+gem install jdbc-postgres
+```
 
 2. jdbc-mysql
-```gem install jdbc-mysql```
+
+```
+gem install jdbc-mysql
+```
 
 ## Configuration
 
