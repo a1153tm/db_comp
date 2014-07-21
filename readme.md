@@ -11,7 +11,6 @@
 ```
 gem install jdbc-postgres
 ```
-
   * jdbc-mysql
 
 ```
