@@ -6,12 +6,12 @@
   インストールは[JRuby](http://jruby.org/getting-started)を参照
 
 3. Gem
-  * jdbc-postgres
+* jdbc-postgres
 
 ```
 gem install jdbc-postgres
 ```
-  * jdbc-mysql
+* jdbc-mysql
 
 ```
 gem install jdbc-mysql
