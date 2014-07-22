@@ -31,6 +31,7 @@ DBComp::MySQLColumn.class_eval do
 end
 
 open(check_file) do |f|
-  results = DBComp::Checker.new.execute f.read
-  Reporter.report(results, STDOUT)
+  reporter = Reporter.new(STDOUT)
+  DBComp::Checker.new(reporter).execute f.read
+  reporter.report_summary
 end

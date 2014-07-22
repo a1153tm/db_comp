@@ -4,16 +4,13 @@ module DBComp
 
   class Checker
   
-    attr_reader :results, :cache
-
-    def initialize
-      @results = []
-      @cache = {}
+    def initialize(reporter)
+      @reporter = reporter
       Derivable.class_eval do
         alias :_derivedLayout :derivedLayout
         def derivedLayout(name, columns)
           layout = _derivedLayout(name, columns)
-          layout.results = @results
+          layout.reporter = @reporter
           layout
         end
       end
@@ -21,18 +18,18 @@ module DBComp
 
     def execute(code)
       eval code
-      @results
+      @reporter
     end
   
     def redshift
       layout = RedshiftLayout.new
-      layout.results = @results
+      layout.reporter = @reporter
       layout
     end
   
     def mysql
       layout = MySQLLayout.new
-      layout.results = @results
+      layout.reporter = @reporter
       layout
     end
   
@@ -40,13 +37,13 @@ module DBComp
 
   class Layout
 
-    attr_accessor :results
+    attr_accessor :reporter
 
     alias :equals :==
 
     def ==(other)
       result = equals(other)
-      @results << { result: result, left: self, right: other }
+      @reporter << { result: result, left: self, right: other }
     end
 
   end

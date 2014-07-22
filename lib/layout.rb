@@ -30,7 +30,7 @@ module DBComp
         elem.kind_of?(Hash) ? elem[:name] : elem
       end
       columns = @columns.select { |col| not col_names.include?(col.name) }
-      derivedLayout("(calcurated from #{table})", columns)
+      derivedLayout("(calcurated #{table})", columns)
     end
 
     private
@@ -125,7 +125,7 @@ module DBComp
     protected
 
     def database
-      "Redshift"
+      "redshift"
     end
 
     def set_columns
@@ -140,7 +140,7 @@ module DBComp
     protected
 
     def database
-      "MySQL"
+      "mysql"
     end
 
     def set_columns
