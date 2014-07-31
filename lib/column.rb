@@ -26,7 +26,7 @@ module DBComp
     end
 
     def to_s
-      [@name.ljust(15, ' '), @type.to_s.ljust(10, ' '), @length.to_s.ljust(5, ' '), @nullable.to_s].join
+      [@name.ljust(20, ' '), @type.to_s.ljust(10, ' '), @length.to_s.ljust(5, ' '), @nullable.to_s].join
     end
   
   end
@@ -44,6 +44,7 @@ module DBComp
         "integer" => :int,
         "boolean" => :bool,
         "date" => :date,
+        "smallint" => :smallint,
         "timestamp without time zone" => :timestamp,
         "timestamp wit time zone" => :timestamp
       }
@@ -71,6 +72,7 @@ module DBComp
         "char" => :char,
         "varchar" => :varchar,
         "int" => :int,
+        "smallint" => :smallint,
         "tinyint" => :bool,
         "date" => :date,
         "timestamp" => :timestamp
@@ -79,8 +81,9 @@ module DBComp
         col_def = {}
         col_def[:name] = rs.getString('Field').strip
         type_len = rs.getString('Type').strip.match(/^(\w+)\(?(\d*)\)?$/)
+	type_len = [nil, rs.getString('Type').strip, ''] unless type_len
         col_def[:type] = col_type_map[type_len[1]] || type_len[1]
-        if [:int, :bool].include? col_def[:type]
+        if [:int, :smallint, :bool].include? col_def[:type]
           col_def[:length] = nil
         else
           col_def[:length] = type_len[2].empty? ? nil : type_len[2].to_i
